@@ -18,33 +18,34 @@ class DashboardController extends Controller
     {
         
         $user = Auth::user();
-        $temperatureData = $user->temperatures->all();
+        $temperatureDataColombo = $this->arrangeData($user->temperatures->where('town', 'Colombo'));
+        $temperatureDataMelbourne = $this->arrangeData($user->temperatures->where('town', 'Melbourne'));
         $towns = ['Colombo', 'Melbourne'];
         $baby ="chanu";
         return Inertia::render('Dashboard', [
-            'temperatureData' => $temperatureData , 'towns' => $towns , 'baby' => $baby
+            'temperatureDataColombo' => $temperatureDataColombo , 'temperatureDataMelbourne' => $temperatureDataMelbourne , 'towns' => $towns , 'baby' => $baby
         ]);
     }
     
     /**
-     * Display the password reset view.
+     * 
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
+     * @param  Collection
+     * @return Array
      */
     private function arrangeData($tempData){
         $data = [];
         foreach($tempData as $value){
-            dd($value);
             $a = [
                 'town' => $value->town,
                 'time' => date_format(date_create($value->created_at),"D, t F Y, H:i:s a"),
-                'tempC' =>  $value->temperature,
-                'tempF' => ($value->temperature * 9/5) + 32,
+                'tempC' =>  $value->temperature . " C",
+                'tempF' => ($value->temperature * 9/5) + 32 . " F", 
             ];
             $data[] = $a;
+             
         }
-        
+        return $data;
     }
     
 }
