@@ -62,8 +62,7 @@ class AuthenticatedSessionController extends Controller {
     /**
      * Insert Town Temperature.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     *
      */
     private function logTemperature() {
         // exclude data for weather API
