@@ -5,13 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Town extends Model
-{
+class Town extends Model {
+
     use HasFactory;
+
     protected $fillable = ['name'];
-    
-    
-    public function temperature(){
-        return $this->hasMany(Temperature::class );
+
+    /**
+     * Defines the hasMany to relationship with Temperature
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function temperatures() {
+        return $this->hasMany(Temperature::class);
     }
+
 }

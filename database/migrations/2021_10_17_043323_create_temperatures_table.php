@@ -15,8 +15,10 @@ class CreateTemperaturesTable extends Migration
     {
         Schema::create('temperatures', function (Blueprint $table) {
             $table->id();
-            $table->integer('townId');
+            $table->integer('town_id');
             $table->string('temperature');
+            $table->integer('user_id');
+            $table->string('town');
             $table->timestamps();
         });
         
