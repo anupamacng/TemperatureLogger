@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Models\Temperature;
 use Inertia\Inertia;
 
 class DashboardController extends Controller
@@ -18,12 +17,12 @@ class DashboardController extends Controller
     public function index()
     {
         
-        $temperature = new Temperature;
         $user = Auth::user();
-        $temperatureData = $this->arrangeData($user->temperatures->all());
+        $temperatureData = $user->temperatures->all();
         $towns = ['Colombo', 'Melbourne'];
+        $baby ="chanu";
         return Inertia::render('Dashboard', [
-            'temperatureData' , 'towns'
+            'temperatureData' => $temperatureData , 'towns' => $towns , 'baby' => $baby
         ]);
     }
     
@@ -36,6 +35,7 @@ class DashboardController extends Controller
     private function arrangeData($tempData){
         $data = [];
         foreach($tempData as $value){
+            dd($value);
             $a = [
                 'town' => $value->town,
                 'time' => date_format(date_create($value->created_at),"D, t F Y, H:i:s a"),
