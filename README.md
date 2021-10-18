@@ -28,3 +28,13 @@
   
   - run php artisan serve to run your application
   - Then access the URL via browser
+
+
+##Implementation 
+- You can change the cities and in config/town.php file. Update the location details interms of lattitude and logitude if required.
+- API paramters can be changed at config/weatherapi.php
+- Temperature data is updated to the table at AuthenticatedSessionController, 
+- API provider implemented in Factory pattern
+- Laravel Breeze, used Authentications.
+- Front end used Vue.js with Insertia
+- 
