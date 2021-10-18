@@ -21,9 +21,8 @@ class DashboardController extends Controller
         $temperatureDataColombo = $this->arrangeData($user->temperatures->where('town', 'Colombo'));
         $temperatureDataMelbourne = $this->arrangeData($user->temperatures->where('town', 'Melbourne'));
         $towns = ['Colombo', 'Melbourne'];
-        $baby ="chanu";
         return Inertia::render('Dashboard', [
-            'temperatureDataColombo' => $temperatureDataColombo , 'temperatureDataMelbourne' => $temperatureDataMelbourne , 'towns' => $towns , 'baby' => $baby
+            'temperatureDataColombo' => $temperatureDataColombo , 'temperatureDataMelbourne' => $temperatureDataMelbourne , 'towns' => $towns 
         ]);
     }
     

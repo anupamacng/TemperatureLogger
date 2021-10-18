@@ -67,25 +67,13 @@ class AuthenticatedSessionController extends Controller {
     private function logTemperature() {
         // exclude data for weather API
         // Units in metric means Celcius temperature
-        $parameters = [
-            "exclude" => 'hourly,minutely,daily',
-            "appid" => env("OPEN_WEATHER_APPID"),
-            'units' => 'metric'
-        ];
+        $parameters = Config('weatherapi');
         $tempDataService = new TemperaturedataService(env("OPEN_WEATHER_URL"));
         foreach ($parameters as $k => $v) {
             $tempDataService->setParameter($k, $v);
         }
         $arrTemperature = [];
-        $townData = [
-            "Colombo" => ['town_id' => 1,
-                'lat' => '6.927079',
-                'lon' => '79.861244'],
-            "Melbourne" => ['town_id' => 2,
-                "lat" => '-37.813629',
-                "lon" => '144.963058'],
-        ];
-
+        $townData = Config('town');
         if ($townData) {
             foreach ($townData as $key => $value) {
                 $temperatureData = $tempDataService->fetch($value);
