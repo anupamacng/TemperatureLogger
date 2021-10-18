@@ -19,37 +19,22 @@
                 <div>
                         <table style="width:100%;">
                             <tr>
-                                  <th colspan="10" v-for="town in towns">{{ town }}</th>
+                                  <th v-for="town in towns">{{ town }}</th>
                             </tr>
                             
                         </table>
+                    <div class="row">
+                        <div v-for="tempCity in tempData" class="column" style="width:">
+                            <table>
+                                <tr v-for="cityData in tempCity" :key="cityData.id">
+                                            <td >{{ cityData['time'] }}</td>
+                                  <td >{{ cityData['tempC'] }}</td>
+                                  <td >{{ cityData['tempF'] }}</td>
+                                      </tr>
+                            </table>
+                        </div>
+                    </div>
 
-                <div class="row">
-                  <div class="column">
-                    <table>
-                <tr v-for="temperatureDataColombo1 in temperatureDataColombo" :key="temperatureDataColombo1.id">
-                          <td >{{ temperatureDataColombo1['time'] }}</td>
-                <td >{{ temperatureDataColombo1['tempC'] }}</td>
-                <td >{{ temperatureDataColombo1['tempF'] }}</td>
-                    </tr>
-
-                    </table>
-                  </div>
-                  <div class="column">
-                    <table>
-
-                     <tr v-for="temperatureDataMelbourne1 in temperatureDataMelbourne" :key="temperatureDataMelbourne1.id">
-                          <td >{{ temperatureDataMelbourne1['time'] }}</td>
-                <td >{{ temperatureDataMelbourne1['tempC'] }}</td>
-                <td >{{ temperatureDataMelbourne1['tempF'] }}</td>
-                    </tr>
-                    </table>
-                  </div>
-                </div>
-
-
-
-                            
                 </div>
 
             </div>
@@ -62,7 +47,7 @@ import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
 import { Head } from '@inertiajs/inertia-vue3';
 
 export default {
-    props: ['baby' , 'temperatureDataColombo', 'temperatureDataMelbourne', 'towns' ],
+    props: [ 'towns' , 'tempData'],
     components: {
         BreezeAuthenticatedLayout,
         Head,

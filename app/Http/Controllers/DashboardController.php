@@ -18,11 +18,17 @@ class DashboardController extends Controller
     {
         
         $user = Auth::user();
+        $dataSet = $user->temperatures->groupby('town');
+        $tempData = [];
+        $towns = [];
+        foreach($dataSet as $key=>$value){
+            $towns[] = $key;
+            $tempData[$key] = $this->arrangeData($value);
+        }
         $temperatureDataColombo = $this->arrangeData($user->temperatures->where('town', 'Colombo'));
         $temperatureDataMelbourne = $this->arrangeData($user->temperatures->where('town', 'Melbourne'));
-        $towns = ['Colombo', 'Melbourne'];
         return Inertia::render('Dashboard', [
-            'temperatureDataColombo' => $temperatureDataColombo , 'temperatureDataMelbourne' => $temperatureDataMelbourne , 'towns' => $towns 
+            'tempData' =>$tempData, 'temperatureDataColombo' => $temperatureDataColombo , 'temperatureDataMelbourne' => $temperatureDataMelbourne , 'towns' => $towns 
         ]);
     }
     
