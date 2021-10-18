@@ -12,30 +12,30 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        Anu You're logged in! {{baby}}
-                    </div>
-                </div>
-
-                <div>
+                        <div>
                         <table style="width:100%;">
                             <tr>
                                   <th v-for="town in towns">{{ town }}</th>
                             </tr>
                             
                         </table>
-                    <div class="row">
-                        <div v-for="tempCity in tempData" class="column" style="width:">
-                            <table>
-                                <tr v-for="cityData in tempCity" :key="cityData.id">
-                                            <td >{{ cityData['time'] }}</td>
-                                  <td >{{ cityData['tempC'] }}</td>
-                                  <td >{{ cityData['tempF'] }}</td>
-                                      </tr>
-                            </table>
+                        <div class="row">
+                            <div v-for="tempCity in tempData" class="column" style="width:">
+                                <table>
+                                    <tr v-for="cityData in tempCity" :key="cityData.id">
+                                                <td >{{ cityData['time'] }}</td>
+                                      <td >{{ cityData['tempC'] }}</td>
+                                      <td >{{ cityData['tempF'] }}</td>
+                                          </tr>
+                                </table>
+                            </div>
+                        </div>
+
                         </div>
                     </div>
-
                 </div>
+
+                
 
             </div>
         </div>

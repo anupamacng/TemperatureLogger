@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Services\TemperaturedataService;
+
+use App\Services\ApiFactory;
 
 class AuthenticatedSessionController extends Controller {
 
@@ -65,18 +66,18 @@ class AuthenticatedSessionController extends Controller {
      *
      */
     private function logTemperature() {
-        // exclude data for weather API
-        // Units in metric means Celcius temperature
+        // read API paramters
         $parameters = Config('weatherapi');
-        $tempDataService = new TemperaturedataService(env("OPEN_WEATHER_URL"));
+        // get API object
+        $tempDataProvider = ApiFactory::getApiFactory('weatherapi');
         foreach ($parameters as $k => $v) {
-            $tempDataService->setParameter($k, $v);
+            $tempDataProvider->setParameter($k, $v);
         }
         $arrTemperature = [];
         $townData = Config('town');
         if ($townData) {
             foreach ($townData as $key => $value) {
-                $temperatureData = $tempDataService->fetch($value);
+                $temperatureData = $tempDataProvider->fetch($value);
                 if ($temperatureData) {
                     if ($temperatureData->current->temp) {
                         $arrTemperature[] = new Temperature([

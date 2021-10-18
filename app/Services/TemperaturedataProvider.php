@@ -4,8 +4,9 @@ namespace App\Services;
 
 use App\Models\Temperature;
 use Illuminate\Support\Facades\Http;
+use App\Services\InterfaceApiProvider;
 
-class TemperaturedataService {
+class TemperaturedataProvider implements InterfaceApiProvider{
 
     protected $requiredParameters = [];
     protected $serviceURL;
@@ -30,7 +31,7 @@ class TemperaturedataService {
 
     /**
      * Function to call weatherAPI .
-     * @param Array $townData
+     * @param Array $townData(lattitude, logitude)
      * @param Collection 
      */
     public function fetch($townData) {
